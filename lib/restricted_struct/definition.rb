@@ -1,7 +1,7 @@
 class RestrictedStruct < Struct
   ACCESS_RESTRICTIONS = {
-    private: ->(methods) { ->(_) { private *methods } },
-    protected: ->(methods) { -> (_) { protected *methods } }
+    :private => lambda { |methods| lambda { |_| private *methods } },
+    :protected => lambda { |methods| lambda { |_| protected *methods } }
   }
   ACCESS_LEVELS = ACCESS_RESTRICTIONS.keys
 
