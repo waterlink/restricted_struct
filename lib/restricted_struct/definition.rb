@@ -1,0 +1,2 @@
+class RestrictedStruct < Struct
+end
