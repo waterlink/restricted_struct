@@ -1,5 +1,7 @@
 # RestrictedStruct
 
+[![Build Status](https://travis-ci.org/waterlink/restricted_struct.svg?branch=master)](https://travis-ci.org/waterlink/restricted_struct)
+
 This gem allows to use ruby's Struct, but automatically hides all the attributes as private or protected, which provides higher level of encapsulation.
 
 ## Installation
