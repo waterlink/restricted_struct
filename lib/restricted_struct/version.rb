@@ -1,1 +1,1 @@
-RestrictedStruct::VERSION = "0.0.1"
+RestrictedStruct::VERSION = "0.1.0"
