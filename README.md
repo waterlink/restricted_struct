@@ -42,6 +42,41 @@ end
 
 Available access levels: `:private` and `:protected`.
 
+### Keyword arguments
+
+*Not yet implemented*
+
+class Rectangle < RestrictedStruct.new(:protected, :x1, :y1, :x2, :y2, :color => :white)
+  # ...
+end
+
+This will create a struct with 5 fields: x1, y1, x2, y2 and color. But color will default to `:white` if not provided.
+And color can be assigned while instantiating a value of this class either as 5th parameter or as keyword argument, i.e.:
+
+```ruby
+rect = Rectangle[20, 30, 60, 50, :red]
+# is the same as:
+rect = Rectangle[20, 30, 60, 50, :color => :red]
+```
+
+By the way, nothing forbids you from specifying any fields as keyword arguments:
+
+```ruby
+rect = Rectangle[20, 30, :x2 => 60, :y2 => 50]
+# or even all of them:
+rect = Rectangle[:x1 => 20, :y1 => 30, :x2 => 60, :y2 => 50, :color => :black]
+```
+
+Just be careful when specifying the same fields simultaneously as normal params and as part of keyword arguments hash, for example:
+
+```ruby
+rect = Rectangle[20, 30, 60, 50, :x2 => 55]
+# is essentially the same as
+rect = Rectangle[20, 30, 55, 50]
+```
+
+Which means 3rd argument was overwritten by corresponding keyword argument.
+
 ## Contributing
 
 1. Fork it ( https://github.com/waterlink/restricted_struct/fork )

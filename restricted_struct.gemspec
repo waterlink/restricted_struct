@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = RestrictedStruct::VERSION
   spec.authors       = ["Alexey Fedorov", "Anselm Helbig"]
   spec.email         = ["alexey.fedorov@wimdu.com", "anselm.helbig@wimdu.com"]
-  spec.summary       = %q{Create Struct-s with private or protected attributes}
+  spec.summary       = %q{Create Struct-s with private or protected attributes. Reduce your boilerplate code to nothing}
   spec.description   = %q{This gem allows to use ruby's Struct, but automatically hides all the attributes as private or protected, which provides higher level of encapsulation.}
   spec.homepage      = ""
   spec.license       = "MIT"
