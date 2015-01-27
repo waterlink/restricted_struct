@@ -46,9 +46,11 @@ Available access levels: `:private` and `:protected`.
 
 *Not yet implemented*
 
+```ruby
 class Rectangle < RestrictedStruct.new(:protected, :x1, :y1, :x2, :y2, :color => :white)
   # ...
 end
+```
 
 This will create a struct with 5 fields: x1, y1, x2, y2 and color. But color will default to `:white` if not provided.
 And color can be assigned while instantiating a value of this class either as 5th parameter or as keyword argument, i.e.:
