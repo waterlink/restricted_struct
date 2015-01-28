@@ -44,8 +44,6 @@ Available access levels: `:private` and `:protected`.
 
 ### Keyword arguments
 
-*Not yet implemented*
-
 ```ruby
 class Rectangle < RestrictedStruct.new(:protected, :x1, :y1, :x2, :y2, :color => :white)
   # ...
