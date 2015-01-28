@@ -43,8 +43,10 @@ class RestrictedStruct < Struct
   def initialize(*values)
     values, keyword_args = Support.extract_keyword_args(values)
     members.each_with_index do |name, index|
-      values[index] ||= self.class.defaults[name]
-      values[index] = keyword_args[name] if keyword_args.has_key?(name)
+      # 1.8 compatibility
+      key = name.to_sym
+      values[index] ||= self.class.defaults[key]
+      values[index] = keyword_args[key] if keyword_args.has_key?(key)
     end
     super(*values)
   end
