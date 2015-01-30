@@ -7,7 +7,20 @@ class RestrictedStruct < Struct
 
   class << self
     def new(access_level, *properties)
-      super(*properties, &access_restriction(access_level, properties))
+      properties, defaults = Support.extract_keyword_args(properties)
+      properties.concat(defaults.keys)
+      super(*properties, &access_restriction(access_level, properties)).with_defaults(defaults)
+    end
+
+    def defaults
+      @defaults ||= {}
+    end
+
+    protected
+
+    def with_defaults(defaults)
+      @defaults = defaults
+      self
     end
 
     private
@@ -25,5 +38,16 @@ class RestrictedStruct < Struct
     def accessor_methods(properties)
       properties + properties.map { |name| :"#{name}=" }
     end
+  end
+
+  def initialize(*values)
+    values, keyword_args = Support.extract_keyword_args(values)
+    members.each_with_index do |name, index|
+      # 1.8 compatibility
+      key = name.to_sym
+      values[index] ||= self.class.defaults[key]
+      values[index] = keyword_args[key] if keyword_args.has_key?(key)
+    end
+    super(*values)
   end
 end
