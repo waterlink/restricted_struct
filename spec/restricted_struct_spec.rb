@@ -23,6 +23,27 @@ RSpec.describe RestrictedStruct do
     end
   end
 
+  describe "deals with falsy arguments properly" do
+    let(:point) { RestrictedStruct.new(:private, :a, :b) }
+    subject { point[*args].values }
+
+    context "when argument is nil" do
+      let(:args) { [nil, nil] }
+
+      it "holds nil inside" do
+        is_expected.to eq([nil, nil])
+      end
+    end
+
+    context "when argument is false" do
+      let(:args) { [nil, false] }
+
+      it "holds false inside" do
+        is_expected.to eq([nil, false])
+      end
+    end
+  end
+
   describe "keyword arguments" do
     let(:rectangle) { RestrictedStruct.new(:protected, :x1, :y1, :x2, :y2, :color => :white) }
 

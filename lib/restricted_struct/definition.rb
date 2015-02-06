@@ -45,7 +45,7 @@ class RestrictedStruct < Struct
     members.each_with_index do |name, index|
       # 1.8 compatibility
       key = name.to_sym
-      values[index] ||= self.class.defaults[key]
+      values[index] = self.class.defaults[key] if nil == values[index]
       values[index] = keyword_args[key] if keyword_args.has_key?(key)
     end
     super(*values)
